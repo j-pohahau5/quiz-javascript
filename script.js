@@ -50,4 +50,8 @@ var questions = [
         choiceD : "boolean",
         correct : "C",
     }
-]
+] ;
+
+var lastQuestion = questions.length - 1;
+var renderquestion = 0;
+
