@@ -61,11 +61,15 @@ var questions = [
     }
 ];
 console.log(questions)
+//  hide restart button 
+
+restartBtn.style.display = "none"
 
 // write a function for the start button to begin game
 function startGame() {
     instructions.style.display = "none";
     displayQuestion()
+    setTime()
 }
 
 startBtn.addEventListener("click", startGame)
@@ -79,8 +83,26 @@ function displayQuestion() {
     choiceD.textContent = questions[questionIndex].choiceD
 }
 
-function checkAnswer() {
+// use a function to create timer count down
+function setTime() {
+    var timerInterval = setInterval(function() {
+      timer--;
+      timeCounter.textContent = timer;
+  
+      if(timer === 0) {
+        clearInterval(timerInterval);       
+      }
+    }, 1000);
+  }
 
+function checkAnswer() {
+    console.log(checkAnswer)
+    var userChoice;
+    if (correct === userChoice) {
+        console.log("correct")
+    } else {
+        console.log("Incorrect")
+    }  
 }
 
 // checkAnswer, in this function, comparing correct answer and user seleted answer

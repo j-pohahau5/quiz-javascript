@@ -1,0 +1,15 @@
+body {
+    justify-content: center;
+}
+
+button{
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+#question {
+    font-size: x-large;
+    font-weight: bolder;
+    align-content: center;
+}
