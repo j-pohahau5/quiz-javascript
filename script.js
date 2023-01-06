@@ -20,7 +20,7 @@ var restartBtn = document.querySelector(".restart-btn");
 
 var correctCounter = 0;
 var incorrectCounter = 0;
-var timer = 5;
+var timer = 60;
 var questionIndex = 0;
 // var correct;
 
@@ -113,11 +113,13 @@ function checkAnswer() {
         console.log('in checkAnswer(): INCORRECT ANSWER: questionIndex: ', questionIndex, 'question len: ', questions.length)
 
         console.log(incorrectCounter)
+        console.log("wrong")
         incorrectCounter++
         // displayQuestion(questionIndex * 6) 
         // displayQuestion(questionIndex++)          
       } else {
         console.log('in checkAnswer(): CORRECT ANSWER: questionIndex: ', questionIndex)
+        console.log("correct")
 
         console.log(correctCounter);
         correctCounter++;
@@ -129,6 +131,7 @@ function checkAnswer() {
         console.log("todo add score card page")
         scoreCard()
       }
+      
     //   displayQuestion(questionIndex++)  
 }
 
