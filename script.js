@@ -5,6 +5,7 @@ var instructions = document.querySelector("#instructions");
 var startBtn = document.querySelector("#start-btn");
 var quiz = document.querySelector("#quiz");
 var question = document.querySelector("#question");
+var choices = document.querySelectorAll(".choice");
 
 var choiceA = document.querySelector("#A");
 var choiceB = document.querySelector("#B");
@@ -29,7 +30,7 @@ var questions = [
         choiceB : "True",
         choiceC : "div",
         choiceD : "var",
-        correct : "A",
+        correct : ".querySelector",
     }, {
         question : "What starts a conditional statement?",
         choiceA : "for",
@@ -71,9 +72,10 @@ function startGame() {
     displayQuestion()
     setTime()
 }
-
+// use  start button to start game
 startBtn.addEventListener("click", startGame)
 
+// use function to display question
 function displayQuestion() {
     quiz.style.display = "block"
     question.textContent = questions[questionIndex].question
@@ -96,15 +98,20 @@ function setTime() {
   }
 
 function checkAnswer() {
-    console.log(checkAnswer)
-    var userChoice;
-    if (correct === userChoice) {
-        console.log("correct")
-    } else {
-        console.log("Incorrect")
-    }  
+    console.log("hello it works")
+
+    choices.forEach(function(i){
+        i.addEventListener("click", function(e){
+            if(e.target.innerHTML === ) {
+                console.log("true")
+            };
+        })
+      })
 }
 
+choices.addEventListener("click", checkAnswer)
+
+//  compare whatever that answer is equal to correct answer
 // checkAnswer, in this function, comparing correct answer and user seleted answer
 // increase index
 // call displayQuesiotn() for dispalying next question.
