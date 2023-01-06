@@ -102,14 +102,14 @@ function checkAnswer() {
 
     choices.forEach(function(i){
         i.addEventListener("click", function(e){
-            if(e.target.innerHTML === ) {
+            if(e.target.innerHTML === correct) {
                 console.log("true")
             };
         })
       })
 }
 
-choices.addEventListener("click", checkAnswer)
+
 
 //  compare whatever that answer is equal to correct answer
 // checkAnswer, in this function, comparing correct answer and user seleted answer
