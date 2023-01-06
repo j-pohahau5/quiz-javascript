@@ -3,6 +3,7 @@
 
 var instructions = document.querySelector("#instructions");
 var startBtn = document.querySelector("#start-btn");
+
 var quiz = document.querySelector("#quiz");
 var question = document.querySelector("#question");
 var choices = document.querySelectorAll(".choice");
@@ -16,10 +17,12 @@ var timeCounter = document.querySelector(".time-counter");
 var notice = document.querySelector("#notice");
 
 var restartBtn = document.querySelector(".restart-btn");
+
 var correctCounter = 0;
 var incorrectCounter = 0;
-var timer = 60;
+var timer = 5;
 var questionIndex = 0;
+// var correct;
 
 
 // using the variable questions to connect var question  with choice (A,B,C,D)
@@ -37,28 +40,28 @@ var questions = [
         choiceB : "False",
         choiceC : "if/ if else/ else/",
         choiceD : "docuement",
-        correct : "C",
+        correct : "if/ if else/ else/",
     }, {
         question : "Arrays in JavaScript can be used to store ___.",
         choiceA : "numbers and strings",
         choiceB : "booleans",
         choiceC : "other arrays",
         choiceD : "all the above",
-        correct : "B",
+        correct : "booleans",
     }, {
         question : "String value must be enclosed within ___ when being assigned to variables.",
         choiceA : "quotes",
         choiceB : "commas",
         choiceC : "curly brackets",
         choiceD : "square brackets",
-        correct : "A",
+        correct : "quotes",
     }, {
         question : "What is && in JavaScript?",
         choiceA : "loops",
         choiceB : "datatype",
         choiceC : "string",
         choiceD : "boolean",
-        correct : "C",
+        correct : "string",
     }
 ];
 console.log(questions)
@@ -77,12 +80,18 @@ startBtn.addEventListener("click", startGame)
 
 // use function to display question
 function displayQuestion() {
+    console.log('in displayQuestion(): questionIndex: ', questionIndex)
+
     quiz.style.display = "block"
     question.textContent = questions[questionIndex].question
     choiceA.textContent = questions[questionIndex].choiceA
     choiceB.textContent = questions[questionIndex].choiceB
     choiceC.textContent = questions[questionIndex].choiceC
     choiceD.textContent = questions[questionIndex].choiceD
+
+//     choices.forEach(item => {
+//         item.addEventListener("click", checkAnswer);
+// })
 }
 
 // use a function to create timer count down
@@ -92,24 +101,60 @@ function setTime() {
       timeCounter.textContent = timer;
   
       if(timer === 0) {
-        clearInterval(timerInterval);       
+        clearInterval(timerInterval);
+        // restartBtn.style.display = "block"  
       }
     }, 1000);
   }
 
 function checkAnswer() {
-    console.log("hello it works")
+    
+    if (this.textContent !== questions[questionIndex].correct) {
+        console.log('in checkAnswer(): INCORRECT ANSWER: questionIndex: ', questionIndex, 'question len: ', questions.length)
 
-    choices.forEach(function(i){
-        i.addEventListener("click", function(e){
-            if(e.target.innerHTML === correct) {
-                console.log("true")
-            };
-        })
-      })
+        console.log(incorrectCounter)
+        incorrectCounter++
+        // displayQuestion(questionIndex * 6) 
+        // displayQuestion(questionIndex++)          
+      } else {
+        console.log('in checkAnswer(): CORRECT ANSWER: questionIndex: ', questionIndex)
+
+        console.log(correctCounter);
+        correctCounter++;
+        // displayQuestion(questionIndex++)        
+      }
+      if(questionIndex < questions.length - 1){
+        displayQuestion(questionIndex++)
+      } else {
+        console.log("todo add score card page")
+        scoreCard()
+      }
+    //   displayQuestion(questionIndex++)  
 }
 
+function restartGame() {
+    // instructions.style.display = "block";
+     correctCounter = 0;
+ incorrectCounter = 0;
+ timer = 5;
+ questionIndex = 0;
+    location.reload();
+   
+}
 
+restartBtn.addEventListener("click", restartGame)
+
+
+function scoreCard() {
+    instructions.style.display = "none";
+    restartBtn.style.display = "block" 
+    var x = document.createElement("INPUT");
+    x.setAttribute("type", "text");
+    x.setAttribute("value", "");
+    document.body.appendChild(x);
+    document.getElementsByClassName("score-card").innerHTML = "hello";
+
+}
 
 //  compare whatever that answer is equal to correct answer
 // checkAnswer, in this function, comparing correct answer and user seleted answer
